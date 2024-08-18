@@ -1,0 +1,115 @@
+﻿@page "/movies"
+@using Volo.Abp.Application.Dtos
+@using SimpleCrudApplication.Movies
+@using SimpleCrudApplication.Localization
+@using Microsoft.Extensions.Localization
+@using Volo.Abp.AspNetCore.Components.Web
+@inject IStringLocalizer<SimpleCrudApplicationResource> L
+@inject AbpBlazorMessageLocalizerHelper<SimpleCrudApplicationResource> LH
+@inherits AbpCrudPageBase<IMovieAppService, MovieDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateMovieDto>
+
+<Card>
+    <CardHeader>
+        <Row Class="justify-content-between">
+            <Column ColumnSize="ColumnSize.IsAuto">
+                <h2>@L["Movies"]</h2>
+            </Column>
+            <Column ColumnSize="ColumnSize.IsAuto">
+                <Button Color="Color.Primary"
+                        Clicked="OpenCreateModalAsync">
+                    @L["NewMovie"]
+                </Button>
+            </Column>
+        </Row>
+    </CardHeader>
+
+    <CardBody>
+        <DataGrid TItem="MovieDto"
+                  Data="Entities"
+                  ReadData="OnDataGridReadAsync"
+                  TotalItems="TotalCount"
+                  ShowPager="true"
+                  PageSize="PageSize">
+            <DataGridColumns>
+                <DataGridColumn TItem="MovieDto"
+                                Field="@nameof(MovieDto.movieName)"
+                                Caption="@L["Movie Name"]">            
+                </DataGridColumn>
+
+                <DataGridColumn TItem="MovieDto"
+                                Field="@nameof(MovieDto.movieDescription)"
+                                Caption="@L["Movie Description"]">
+                </DataGridColumn>
+
+                <DataGridColumn TItem="MovieDto"
+                                Field="@nameof(MovieDto.movieImageUrl)"
+                                Caption="@L["Movie Image"]">
+                                <DisplayTemplate>
+                        <img src="@context.movieImageUrl" alt="Movie Image" style="max-height: 100px; max-width:100px;" />
+                                </DisplayTemplate>
+                </DataGridColumn>
+
+            </DataGridColumns>
+        </DataGrid>
+    </CardBody>
+</Card>
+
+
+
+
+
+
+<Modal @ref="@CreateModal">
+    <ModalBackdrop />
+    <ModalContent IsCentered="true">
+        <Form>
+            <ModalHeader>
+                <ModalTitle>@L["NewBook"]</ModalTitle>
+                <CloseButton Clicked="CloseCreateModalAsync"/>
+            </ModalHeader>
+            <ModalBody>
+                <Validations @ref="@CreateValidationsRef" Model="@NewEntity" ValidateOnLoad="false">
+                    <Validation MessageLocalizer="@LH.Localize">
+                        <Field>
+                            <FieldLabel>@L["movieName"]</FieldLabel>
+                            <TextEdit @bind-Text="@NewEntity.movieName">
+                                <Feedback>
+                                    <ValidationError/>
+                                </Feedback>
+                            </TextEdit>
+                        </Field>
+                    </Validation>
+
+                    <Field>
+                        <FieldLabel>@L["movieDescription"]</FieldLabel>
+                        <TextEdit @bind-Text="@NewEntity.movieDescription">
+                            <Feedback>
+                                <ValidationError />
+                            </Feedback>
+                        </TextEdit>
+                    </Field>
+
+                    <Field>
+                        <FieldLabel>@L["movieImageUrl"]</FieldLabel>
+                        <TextEdit @bind-Text="@NewEntity.movieImageUrl">
+                            <Feedback>
+                                <ValidationError />
+                            </Feedback>
+                        </TextEdit>
+                    </Field>
+
+
+                </Validations>
+            </ModalBody>
+            <ModalFooter>
+                <Button Color="Color.Secondary"
+                        Clicked="CloseCreateModalAsync">@L["Cancel"]</Button>
+                <Button Color="Color.Primary"
+                        Type="@ButtonType.Submit"
+                        PreventDefaultOnSubmit="true"
+                        Clicked="CreateEntityAsync">@L["Save"]</Button>
+            </ModalFooter>
+        </Form>
+    </ModalContent>
+</Modal>
+

@@ -23,7 +23,7 @@ public class SimpleCrudApplicationMenuContributor : IMenuContributor
     private Task ConfigureMainMenuAsync(MenuConfigurationContext context)
     {
         var l = context.GetLocalizer<SimpleCrudApplicationResource>();
-        
+
         context.Menu.Items.Insert(
             0,
             new ApplicationMenuItem(
@@ -34,6 +34,8 @@ public class SimpleCrudApplicationMenuContributor : IMenuContributor
                 order: 1
             )
         );
+
+        context.Menu.AddItem(new ApplicationMenuItem("SimpleCrudApplication.Movies", l["Menu:Movies"], url: "/movies"));
 
         //Administration
         var administration = context.Menu.GetAdministration();
