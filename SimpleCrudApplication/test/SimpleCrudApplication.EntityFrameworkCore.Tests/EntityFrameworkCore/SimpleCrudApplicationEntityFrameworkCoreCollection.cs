@@ -1,0 +1,9 @@
+﻿using Xunit;
+
+namespace SimpleCrudApplication.EntityFrameworkCore;
+
+[CollectionDefinition(SimpleCrudApplicationTestConsts.CollectionDefinitionName)]
+public class SimpleCrudApplicationEntityFrameworkCoreCollection : ICollectionFixture<SimpleCrudApplicationEntityFrameworkCoreFixture>
+{
+
+}

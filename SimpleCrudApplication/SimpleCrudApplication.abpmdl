@@ -1,0 +1,85 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.Account": {
+      "version": "8.2.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.OpenIddict": {
+      "version": "8.2.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.Identity": {
+      "version": "8.2.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.TenantManagement": {
+      "version": "8.2.1",
+      "isInstalled": true
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "SimpleCrudApplication.Application": {
+      "path": "src/SimpleCrudApplication.Application/SimpleCrudApplication.Application.abppkg",
+      "folder": "src"
+    },
+    "SimpleCrudApplication.Application.Tests": {
+      "path": "test/SimpleCrudApplication.Application.Tests/SimpleCrudApplication.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "SimpleCrudApplication.Domain.Shared": {
+      "path": "src/SimpleCrudApplication.Domain.Shared/SimpleCrudApplication.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "SimpleCrudApplication.Application.Contracts": {
+      "path": "src/SimpleCrudApplication.Application.Contracts/SimpleCrudApplication.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "SimpleCrudApplication.HttpApi": {
+      "path": "src/SimpleCrudApplication.HttpApi/SimpleCrudApplication.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "SimpleCrudApplication.HttpApi.Client": {
+      "path": "src/SimpleCrudApplication.HttpApi.Client/SimpleCrudApplication.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "SimpleCrudApplication.EntityFrameworkCore.Tests": {
+      "path": "test/SimpleCrudApplication.EntityFrameworkCore.Tests/SimpleCrudApplication.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "SimpleCrudApplication.EntityFrameworkCore": {
+      "path": "src/SimpleCrudApplication.EntityFrameworkCore/SimpleCrudApplication.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "SimpleCrudApplication.TestBase": {
+      "path": "test/SimpleCrudApplication.TestBase/SimpleCrudApplication.TestBase.abppkg",
+      "folder": "test"
+    },
+    "SimpleCrudApplication.Domain.Tests": {
+      "path": "test/SimpleCrudApplication.Domain.Tests/SimpleCrudApplication.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "SimpleCrudApplication.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/SimpleCrudApplication.HttpApi.Client.ConsoleTestApp/SimpleCrudApplication.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "SimpleCrudApplication.DbMigrator": {
+      "path": "src/SimpleCrudApplication.DbMigrator/SimpleCrudApplication.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "SimpleCrudApplication.Blazor": {
+      "path": "src/SimpleCrudApplication.Blazor/SimpleCrudApplication.Blazor.abppkg",
+      "folder": "src"
+    },
+    "SimpleCrudApplication.Domain": {
+      "path": "src/SimpleCrudApplication.Domain/SimpleCrudApplication.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}
