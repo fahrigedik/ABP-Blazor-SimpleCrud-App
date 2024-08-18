@@ -14,6 +14,7 @@ using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
+using SimpleCrudApplication.Movies;
 
 namespace SimpleCrudApplication.EntityFrameworkCore;
 
@@ -26,7 +27,9 @@ public class SimpleCrudApplicationDbContext :
     IIdentityDbContext
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
+    
 
+    public DbSet<Movie> Movies { get; set; }
 
     #region Entities from the modules
 
@@ -78,9 +81,17 @@ public class SimpleCrudApplicationDbContext :
         builder.ConfigureOpenIddict();
         builder.ConfigureTenantManagement();
         builder.ConfigureBlobStoring();
-        
-        /* Configure your own tables/entities inside here */
 
+
+        builder.Entity<Movie>(m =>
+        {
+            m.ToTable(SimpleCrudApplicationConsts.DbTablePrefix + "Movies",
+                SimpleCrudApplicationConsts.DbSchema);
+            m.ConfigureByConvention(); //auto configure for the base class props
+            
+        });
+
+        /* Configure your own tables/entities inside here */
         //builder.Entity<YourEntity>(b =>
         //{
         //    b.ToTable(SimpleCrudApplicationConsts.DbTablePrefix + "YourEntities", SimpleCrudApplicationConsts.DbSchema);
