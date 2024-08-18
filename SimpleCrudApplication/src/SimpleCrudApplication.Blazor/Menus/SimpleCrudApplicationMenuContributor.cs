@@ -35,7 +35,7 @@ public class SimpleCrudApplicationMenuContributor : IMenuContributor
             )
         );
 
-        context.Menu.AddItem(new ApplicationMenuItem("SimpleCrudApplication.Movies", l["Menu:Movies"], url: "/movies"));
+        context.Menu.AddItem(new ApplicationMenuItem("SimpleCrudApplication.Movies", l["Movies"], url: "/movies"));
 
         //Administration
         var administration = context.Menu.GetAdministration();
