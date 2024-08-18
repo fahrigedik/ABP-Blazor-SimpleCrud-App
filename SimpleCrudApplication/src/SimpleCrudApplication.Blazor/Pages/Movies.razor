@@ -31,6 +31,17 @@
                   ShowPager="true"
                   PageSize="PageSize">
             <DataGridColumns>
+
+                <DataGridEntityActionsColumn TItem="MovieDto" @ref="@EntityActionsColumn">
+                    <DisplayTemplate>
+                        <EntityActions TItem="MovieDto" EntityActionsColumn="@EntityActionsColumn">
+                            <EntityAction TItem="MovieDto"
+                                          Text="@L["Edit"]"
+                                          Clicked="() => OpenEditModalAsync(context)" />
+                        </EntityActions>
+                    </DisplayTemplate>
+                </DataGridEntityActionsColumn>
+
                 <DataGridColumn TItem="MovieDto"
                                 Field="@nameof(MovieDto.movieName)"
                                 Caption="@L["Movie Name"]">            
@@ -113,3 +124,57 @@
     </ModalContent>
 </Modal>
 
+
+
+
+<Modal @ref="@EditModal">
+    <ModalBackdrop />
+    <ModalContent IsCentered="true">
+        <Form>
+            <ModalHeader>
+                <ModalTitle>@EditingEntity.movieName</ModalTitle>
+                <CloseButton Clicked="CloseEditModalAsync"/>
+            </ModalHeader>
+            <ModalBody>
+                <Validations @ref="@EditValidationsRef" Model="@NewEntity" ValidateOnLoad="false">
+                    <Validation MessageLocalizer="@LH.Localize">
+                        <Field>
+                            <FieldLabel>@L["movieName"]</FieldLabel>
+                            <TextEdit @bind-Text="@EditingEntity.movieName">
+                                <Feedback>
+                                    <ValidationError/>
+                                </Feedback>
+                            </TextEdit>
+                        </Field>
+                    </Validation>
+
+                    <Field>
+                        <FieldLabel>@L["movieDescription"]</FieldLabel>
+                        <TextEdit @bind-Text="@EditingEntity.movieDescription">
+                            <Feedback>
+                                <ValidationError />
+                            </Feedback>
+                        </TextEdit>
+                    </Field>
+                    <Field>
+                        <FieldLabel>@L["movieImageUrl"]</FieldLabel>
+                        <TextEdit @bind-Text="@EditingEntity.movieImageUrl">
+                            <Feedback>
+                                <ValidationError />
+                            </Feedback>
+                        </TextEdit>
+                    </Field>
+                 
+                </Validations>
+            </ModalBody>
+            <ModalFooter>
+                <Button Color="Color.Secondary"
+                        Clicked="CloseEditModalAsync">@L["Cancel"]</Button>
+                <Button Color="Color.Primary"
+                        Type="@ButtonType.Submit"
+                        PreventDefaultOnSubmit="true"
+                        Clicked="UpdateEntityAsync">@L["Save"]</Button>
+            </ModalFooter>
+        </Form>
+    </ModalContent>
+</Modal>
